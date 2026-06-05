@@ -1,4 +1,4 @@
-const { cmd } = require('../JAMALI');
+const { cmd } = require('../momy'); // corrected path
 const { updateUserConfig } = require('../lib/database');
 
 // Helper function to update config in memory and database
@@ -13,7 +13,7 @@ const updateConfig = async (key, value, botNumber, config, reply) => {
         
         await updateUserConfig(botNumber, newConfig);
         
-        return reply(`✅ *${key}* updated to: *${value}*`);
+        return reply(`✅ *${key}* updated to: *${value}*\n\n> ⚡ D4rkEcho MD`);
     } catch (e) {
         console.error(e);
         return reply("❌ error saving to database");
@@ -32,7 +32,7 @@ cmd({
     react: "🎤"
 },
 async(conn, mek, m, { args, isOwner, reply, botNumber, config }) => {
-    if (!isOwner) return reply("*owner only command*");
+    if (!isOwner) return reply("*👑 owner only command*");
     const value = args[0]?.toLowerCase();
     
     if (value === 'on' || value === 'true') {
@@ -52,7 +52,7 @@ cmd({
     react: "⌨️"
 },
 async(conn, mek, m, { args, isOwner, reply, botNumber, config }) => {
-    if (!isOwner) return reply("*owner only command*");
+    if (!isOwner) return reply("*👑 owner only command*");
     const value = args[0]?.toLowerCase();
     
     if (value === 'on' || value === 'true') {
@@ -76,7 +76,7 @@ cmd({
     react: "📵"
 },
 async(conn, mek, m, { args, isOwner, reply, botNumber, config }) => {
-    if (!isOwner) return reply("*owner only command*");
+    if (!isOwner) return reply("*👑 owner only command*");
     const value = args[0]?.toLowerCase();
     
     if (value === 'on' || value === 'true') {
@@ -99,7 +99,7 @@ cmd({
     react: "👋"
 },
 async(conn, mek, m, { args, isOwner, reply, botNumber, config }) => {
-    if (!isOwner) return reply("*owner only command*");
+    if (!isOwner) return reply("*👑 owner only command*");
     const value = args[0]?.toLowerCase();
     
     if (value === 'on' || value === 'true') {
@@ -118,7 +118,7 @@ cmd({
     react: "👋"
 },
 async(conn, mek, m, { args, isOwner, reply, botNumber, config }) => {
-    if (!isOwner) return reply("*owner only command*");
+    if (!isOwner) return reply("*👑 owner only command*");
     const value = args[0]?.toLowerCase();
     
     if (value === 'on' || value === 'true') {
@@ -141,7 +141,7 @@ cmd({
     react: "👁️"
 },
 async(conn, mek, m, { args, isOwner, reply, botNumber, config }) => {
-    if (!isOwner) return reply("*owner only command*");
+    if (!isOwner) return reply("*👑 owner only command*");
     const value = args[0]?.toLowerCase();
     
     if (value === 'on' || value === 'true') {
@@ -161,7 +161,7 @@ cmd({
     react: "👁️"
 },
 async(conn, mek, m, { args, isOwner, reply, botNumber, config }) => {
-    if (!isOwner) return reply("*owner only command*");
+    if (!isOwner) return reply("*👑 owner only command*");
     const value = args[0]?.toLowerCase();
     
     if (value === 'on' || value === 'true') {
@@ -181,7 +181,7 @@ cmd({
     react: "❤️"
 },
 async(conn, mek, m, { args, isOwner, reply, botNumber, config }) => {
-    if (!isOwner) return reply("*owner only command*");
+    if (!isOwner) return reply("*👑 owner only command*");
     const value = args[0]?.toLowerCase();
     
     if (value === 'on' || value === 'true') {
@@ -204,7 +204,7 @@ cmd({
     react: "⚙️"
 },
 async(conn, mek, m, { args, isOwner, reply, botNumber, config }) => {
-    if (!isOwner) return reply("*owner only command*");
+    if (!isOwner) return reply("*👑 owner only command*");
     const mode = args[0]?.toLowerCase();
     const validModes = ['public', 'private', 'groups', 'inbox'];
 
@@ -222,7 +222,7 @@ cmd({
     react: "💀"
 },
 async(conn, mek, m, { args, isOwner, reply, botNumber, config }) => {
-    if (!isOwner) return reply("*owner only command*");
+    if (!isOwner) return reply("*👑 owner only command*");
     const newPrefix = args[0];
 
     if (newPrefix) {
