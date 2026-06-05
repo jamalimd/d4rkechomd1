@@ -1,10 +1,12 @@
 const { cmd } = require('../momy');
 const axios = require('axios');
 
-const REPO_IMAGE = 'https://files.catbox.moe/0e3rok.jpg';
-const REPO_LINK = 'https://github.com/jamalitechempire/jamali-bot';
+// Picha ya bot (picha yako kali)
+const REPO_IMAGE = 'https://i.ibb.co/dZ2gmwc/upload-1780662582401-3046dde1-jpg.jpg';
+// Link ya mradi (Heroku uliyonipa)
+const REPO_LINK = 'https://d4rkechomd-d4193915ac4b.herokuapp.com/';
 
-// Define combined fakevCard (JAMALI MD)
+// fakevCard ya D4rkEcho MD (namba 255618313342)
 const fakevCard = {
   key: {
     fromMe: false,
@@ -13,19 +15,19 @@ const fakevCard = {
   },
   message: {
     contactMessage: {
-      displayName: "© JAMALI MD",
-      vcard: `BEGIN:VCARD\nVERSION:3.0\nFN:JAMALI MD BOT\nORG:JAMALI TECH TZ;\nTEL;type=CELL;type=VOICE;waid=255784062158:+255784062158\nEND:VCARD`
+      displayName: "© D4rkEcho MD",
+      vcard: `BEGIN:VCARD\nVERSION:3.0\nFN:D4rkEcho MD BOT\nORG:D4rkEcho Tech;\nTEL;type=CELL;type=VOICE;waid=255618313342:+255618313342\nEND:VCARD`
     }
   }
 };
 
-// Utility function for formatted messages
-function jamaliMessage(text) {
+// Ujumbe uliopambwa kwa style ya D4rkEcho
+function d4rkechoMessage(text) {
   return {
     text: text,
     contextInfo: {
       externalAdReply: {
-        title: 'JAMALI MD',
+        title: 'D4rkEcho MD',
         body: 'GitHub Repository ‧ Verified',
         thumbnailUrl: REPO_IMAGE,
         sourceUrl: REPO_LINK,
@@ -34,8 +36,8 @@ function jamaliMessage(text) {
         mediaType: 1
       },
       forwardedNewsletterMessageInfo: {
-        newsletterJid: '120363425061263455@newsletter',
-        newsletterName: 'JAMALI MD',
+        newsletterJid: '120363426538840090@newsletter', // Chaneli yako
+        newsletterName: 'D4rkEcho MD',
         serverMessageId: Math.floor(Math.random() * 1000000)
       },
       isForwarded: true,
@@ -54,12 +56,12 @@ cmd({
 },
 async (conn, mek, m, { from, sender, reply }) => {
     try {
-        // Fetch GitHub stats
+        // Tafuta idadi ya stars na forks (kwa repository yako kwenye GitHub)
         let stars = '⭐';
         let forks = '🔀';
-        
         try {
-            const response = await axios.get('https://api.github.com/repos/jamalitechempire/jamali-bot');
+            // Ikiwa una GitHub repo mpya, badilisha hapa. Kwa sasa tunatumia link ya Heroku
+            const response = await axios.get('https://api.github.com/repos/D4rkEcho/D4rkEcho-MD');
             stars = response.data.stargazers_count || '⭐';
             forks = response.data.forks_count || '🔀';
         } catch (err) {
@@ -67,22 +69,21 @@ async (conn, mek, m, { from, sender, reply }) => {
         }
         
         const repoMessage = 
-`┏━❑ JAMALI MD GITHUB ━━━━━━━━━
-┃ 📦 Repository: jamali-bot
-┃ 👨‍💻 Developer: JAMALI TECH TZ
+`┏━❑ D4RKECHO MD ━━━━━━━━━
+┃ 📦 Project: D4rkEcho-MD
+┃ 👨‍💻 Developer: D4rkEcho Tech
 ┃ 🔗 Link: ${REPO_LINK}
 ┃
 ┃ ⭐ Stars: ${stars}
 ┃ 🔀 Forks: ${forks}
 ┃
 ┃ 🛠️ Open Source WhatsApp Bot
-┃ 💚 Made with ❤️ by JAMALI TECH TZ
+┃ 💚 Made with ❤️ by D4rkEcho Team
 ┗━━━━━━━━━━━━━━━━━━━━
 
-> 🔥 Powered by JAMALI TECH TZ`;
+> ⚡ Powered by D4rkEcho MD`;
 
-        const messageData = jamaliMessage(repoMessage);
-        
+        const messageData = d4rkechoMessage(repoMessage);
         await conn.sendMessage(from, messageData, { quoted: fakevCard });
         
     } catch (e) {
