@@ -3,21 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>JAMALI MD | Pair (Server 1-5)</title>
+    <title>D4rkEcho MD | Pair (Server 1-5)</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         *{margin:0;padding:0;box-sizing:border-box}
-        body{background:radial-gradient(circle at 10% 20%,#050b1a,#010105);font-family:'Inter',sans-serif;color:#fff;padding:20px}
+        body{background:radial-gradient(circle at 10% 20%,#0a0a1a,#010105);font-family:'Inter',sans-serif;color:#fff;padding:20px}
         .container{max-width:1200px;margin:0 auto}
-        h1{text-align:center;margin-bottom:20px;background:linear-gradient(135deg,#00f6ff,#b400ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+        h1{text-align:center;margin-bottom:20px;background:linear-gradient(135deg,#b100ff,#00f0ff);-webkit-background-clip:text;background-clip:text;color:transparent}
         .servers-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:25px}
-        .server-card{background:rgba(12,15,30,0.6);backdrop-filter:blur(12px);border-radius:24px;border:1px solid rgba(0,246,255,0.2);padding:20px}
-        .server-title{font-size:1.2rem;font-weight:600;margin-bottom:15px;color:#00f6ff}
+        .server-card{background:rgba(12,15,30,0.6);backdrop-filter:blur(12px);border-radius:24px;border:1px solid rgba(177,0,255,0.3);padding:20px}
+        .server-title{font-size:1.2rem;font-weight:600;margin-bottom:15px;color:#b100ff}
         input{width:100%;background:#05080f;border:1px solid #2a2f50;border-radius:60px;padding:12px;color:#fff;margin:10px 0}
-        button{background:linear-gradient(95deg,#00c6fb,#005bea);border:none;border-radius:60px;padding:10px;font-weight:600;color:#fff;cursor:pointer;width:100%}
+        button{background:linear-gradient(95deg,#b100ff,#00f0ff);border:none;border-radius:60px;padding:10px;font-weight:600;color:#fff;cursor:pointer;width:100%}
         .code-box{background:#000000aa;border-radius:20px;padding:12px;text-align:center;margin:10px 0;cursor:pointer}
-        .code{font-size:1.1rem;letter-spacing:2px;color:#b400ff}
+        .code{font-size:1.1rem;letter-spacing:2px;color:#d68eff}
         .status{font-size:0.75rem;text-align:center;margin-top:8px}
         .online{color:#0f0}
         .offline{color:#f66}
@@ -28,21 +28,20 @@
 </head>
 <body>
 <div class="container">
-    <h1><i class="fas fa-server"></i> JAMALI MD • PAIR (Server 1-5)</h1>
+    <h1><i class="fas fa-skull"></i> D4rkEcho MD • PAIR (Server 1-5)</h1>
     <div class="servers-grid" id="serversGrid"></div>
-    <div class="footer">Powered by JAMALI TECH TZ | Secure Pairing | Server 1-5</div>
+    <div class="footer">⚡ POWERED BY D4RKECHO MD | SECURE PAIRING | SERVER 1-5</div>
 </div>
 <div id="toast" class="toast"></div>
 
 <script>
     const TOTAL_SERVERS = 5;
-    const ADMIN_PASSWORD = "JAMALI2026";
     let serverStatus = {};
 
     function showToast(msg, type='info') {
         const t = document.getElementById('toast');
         t.innerText = msg;
-        t.style.borderLeftColor = type === 'error' ? '#ff4444' : '#00f6ff';
+        t.style.borderLeftColor = type === 'error' ? '#ff4444' : '#b100ff';
         t.classList.add('show');
         setTimeout(() => t.classList.remove('show'), 3000);
     }
@@ -97,7 +96,7 @@
 
     function copyCode(serverNum) {
         const code = document.getElementById(`code-${serverNum}`).innerText;
-        if (code && !['——', '⏳', 'FAILED', 'ERROR', 'ALREADY ACTIVE'].includes(code)) {
+        if (code && !['—— —— ——', '⏳', 'FAILED', 'ERROR', 'ALREADY ACTIVE'].includes(code)) {
             navigator.clipboard.writeText(code);
             showToast(`Server ${serverNum}: Code copied`);
         } else {
@@ -112,7 +111,7 @@
             html += `
                 <div class="server-card">
                     <div class="server-title"><i class="fas fa-microchip"></i> SERVER ${i}</div>
-                    <input type="tel" id="number-${i}" placeholder="WhatsApp number (e.g., 255784062158)" value="255">
+                    <input type="tel" id="number-${i}" placeholder="WhatsApp number (e.g., 255618313342)" value="255">
                     <button class="btn-neon" id="btn-${i}" onclick="generateCode(${i}, document.getElementById('number-${i}').value.replace(/\\D/g,''))">GENERATE</button>
                     <div class="code-box" onclick="copyCode(${i})">
                         <div class="code" id="code-${i}">—— —— ——</div>
