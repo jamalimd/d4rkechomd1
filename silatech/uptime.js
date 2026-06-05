@@ -42,17 +42,17 @@ async (conn, mek, m, { from, reply }) => {
 ┃
 ╰━━━━━━━━━━━━━━━┈⊷
 
-*POWERED BY JAMALI MD* 👑`;
+*POWERED BY D4RKECHO MD* 👑`;
 
     await conn.sendMessage(from, {
-      image: { url: config.IMAGE_PATH || 'https://files.catbox.moe/0e3rok.jpg' },
+      image: { url: config.IMAGE_PATH || 'https://i.ibb.co/dZ2gmwc/upload-1780662582401-3046dde1-jpg.jpg' },
       caption: status,
       contextInfo: {
         forwardingScore: 999,
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
-          newsletterJid: '120363425061263455@newsletter',
-          newsletterName: 'JAMALI MD',
+          newsletterJid: '120363426538840090@newsletter',
+          newsletterName: 'D4rkEcho MD',
           serverMessageId: 143
         }
       }
