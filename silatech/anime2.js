@@ -2,8 +2,8 @@ const { cmd } = require('../momy');
 const config = require('../config');
 const axios = require('axios');
 
-// Footer constant
-const FOOTER = `> 🔥 Powered by JAMALI TECH TZ`;
+// Footer constant (updated to D4rkEcho MD)
+const FOOTER = `> ⚡ Powered by D4rkEcho MD`;
 
 // Helper: Send formatted message
 const sendFormatted = async (reply, title, content) => {
@@ -48,7 +48,7 @@ cmd({
     desc: "Get anime details from URL",
     category: "anime"
 },
-async(conn, mek, m, { from, q, reply }) => {
+async(conn, mek, m, { from, q, reply }) {
     try {
         if (!q) return reply(`❌ Please provide an anime URL\n\nExample: .animatedetail https://anichin.cafe/renegade-immortal-episode-69-subtitle-indonesia/`);
         
@@ -85,7 +85,7 @@ cmd({
     desc: "Get anime episodes list",
     category: "anime"
 },
-async(conn, mek, m, { from, q, reply }) => {
+async(conn, mek, m, { from, q, reply }) {
     try {
         if (!q) return reply(`❌ Please provide an anime URL\n\nExample: .episodes https://anichin.cafe/renegade-immortal/`);
         
@@ -115,7 +115,7 @@ cmd({
     desc: "Search for anime",
     category: "anime"
 },
-async(conn, mek, m, { from, q, reply }) => {
+async(conn, mek, m, { from, q, reply }) {
     try {
         if (!q) return reply(`❌ Please provide a search query\n\nExample: .animesearch naga`);
         
@@ -145,7 +145,7 @@ cmd({
     desc: "Get anime download links",
     category: "anime"
 },
-async(conn, mek, m, { from, q, reply }) => {
+async(conn, mek, m, { from, q, reply }) {
     try {
         if (!q) return reply(`❌ Please provide an episode URL\n\nExample: .animatedownload https://anichin.cafe/renegade-immortal-episode-69-subtitle-indonesia/`);
         
@@ -177,7 +177,7 @@ cmd({
     desc: "Get random anime quotes",
     category: "anime"
 },
-async(conn, mek, m, { from, q, reply }) => {
+async(conn, mek, m, { from, q, reply }) {
     try {
         const query = q || 'fate';
         await conn.sendPresenceUpdate('composing', from);
