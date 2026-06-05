@@ -7,7 +7,7 @@ const toUpper = (str) => str.toUpperCase();
 const normalize = str => str.toLowerCase().replace(/\s+menu$/, '').trim();
 
 // =============================================================
-// 📌 COMMAND MENU (ORIGINAL STYLE + ANTILINK SUPPORT)
+// 📌 COMMAND MENU (D4rkEcho MD STYLE + ANTILINK SUPPORT)
 // =============================================================
 cmd({
   pattern: "menu",
@@ -34,8 +34,8 @@ async (conn, mek, m, { from, reply, sender, myquoted }) => {
     const prefix = config.PREFIX || ".";
     const mode = config.WORK_TYPE?.toUpperCase() || "PUBLIC";
 
-    // Menu Header (same style)
-    let menu = `╭━━【 ⚡ JAMALI MD 】━━━━╮
+    // Menu Header (D4rkEcho MD)
+    let menu = `╭━━【 ⚡ D4rkEcho MD 】━━━━╮
 │ 👤 user: @${sender.split("@")[0]}
 │ ⚙️ mode: ${mode}
 │ ⌨️ prefix: ${prefix}
@@ -85,20 +85,20 @@ async (conn, mek, m, { from, reply, sender, myquoted }) => {
       });
     }
 
-    // Footer
-    menu += `\n> 🔥 Powered by JAMALI TECH TZ`;
+    // Footer (D4rkEcho Tech)
+    menu += `\n> 🔥 Powered by D4rkEcho Tech`;
 
-    // Send the Menu with image and context info
+    // Send the Menu with the image you provided and updated newsletter info
     await conn.sendMessage(from, {
-      image: { url: 'https://files.catbox.moe/0e3rok.jpg' },
+      image: { url: 'https://i.ibb.co/dZ2gmwc/upload-1780662582401-3046dde1-jpg.jpg' },
       caption: menu,
       contextInfo: {
         mentionedJid: [sender],
         forwardingScore: 999,
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
-          newsletterJid: '120363425061263455@newsletter',
-          newsletterName: 'JAMALI MD',
+          newsletterJid: '120363426538840090@newsletter',
+          newsletterName: 'D4rkEcho MD',
           serverMessageId: 13
         }
       }
