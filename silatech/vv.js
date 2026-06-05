@@ -58,14 +58,14 @@ async(conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, send
             buffer = Buffer.concat([buffer, chunk]);
         }
 
-        // Send the revealed media with styled caption
+        // Send the revealed media with styled caption (updated to D4rkEcho MD)
         const mediaType = isImage ? "image" : "video";
-        const caption = `╭━━【 JAMALI MD BOT 】━━━━━━━━╮
+        const caption = `╭━━【 D4rkEcho MD BOT 】━━━━━━━━╮
 │ *view-once revealed*
 │ *type:* ${isImage ? '🖼️ image' : '🎥 video'}
 ╰━━━━━━━━━━━━━━━━━━━━╯
 
-${config.BOT_FOOTER || '> 🔥 Powered by JAMALI TECH TZ'}`;
+${config.BOT_FOOTER || '> ⚡ Powered by D4rkEcho MD'}`;
 
         await conn.sendMessage(from, {
             [mediaType]: buffer,
