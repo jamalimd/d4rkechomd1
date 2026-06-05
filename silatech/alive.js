@@ -1,7 +1,7 @@
 const { cmd, commands } = require('../momy');
 const config = require('../config');
 
-// Commande Ping
+// Commande Ping - D4rkEcho MD
 cmd({
     pattern: "ping",
     desc: "Check bot latency",
@@ -15,7 +15,7 @@ async(conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, send
         const endTime = Date.now();
         const ping = endTime - startTime;
         
-        const pongMessage = `*⚡ JAMALI MD PONG : ${ping} ms*`;
+        const pongMessage = `*⚡ D4rkEcho MD PONG : ${ping} ms*`;
         
         await conn.sendMessage(from, { text: pongMessage }, { quoted: message });
     } catch (e) {
@@ -24,7 +24,7 @@ async(conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, send
     }
 });
 
-// Commande Alive
+// Commande Alive - D4rkEcho MD
 cmd({
     pattern: "alive",
     desc: "Check if bot is alive",
@@ -34,15 +34,15 @@ cmd({
 async(conn, mek, m, { from, reply, myquoted }) => {
     try {
         await conn.sendMessage(from, { 
-            image: { url: 'https://files.catbox.moe/0e3rok.jpg' },
-            caption: `╭━━【 JAMALI MD BOT 】━━━━━━━━╮
+            image: { url: 'https://i.ibb.co/dZ2gmwc/upload-1780662582401-3046dde1-jpg.jpg' },
+            caption: `╭━━【 D4rkEcho MD BOT 】━━━━━━━━╮
 │ status: *active & running*
 │ prefix: *${config.PREFIX}*
-│ version: *3.0.0*
-│ developed: *JAMALI TECH TZ*
+│ version: *1.0.0*
+│ developed: *D4rkEcho Tech*
 ╰━━━━━━━━━━━━━━━━━━━━╯
 
-${config.BOT_FOOTER || '> 🔥 Powered by JAMALI TECH TZ'}`
+${config.BOT_FOOTER || '> 🔥 Powered by D4rkEcho Tech'}`
         }, { quoted: myquoted });
     } catch (e) {
         reply("error: " + e.message);
