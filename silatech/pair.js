@@ -17,7 +17,7 @@ cmd({
         const text = args.join(" ");
         
         if (!text) {
-            return reply("*Please provide WhatsApp number*\n*Example:* .pair 255784062158");
+            return reply("*Please provide WhatsApp number*\n*Example:* .pair 255618313342");
         }
 
         const numbers = text.split(',')
@@ -53,13 +53,13 @@ cmd({
                     await sleep(3000); // wait a bit
                     
                     await conn.sendMessage(from, {
-                        text: `🔐 *Your JAMALI MD Pairing Code:*\n\n\`${code}\`\n\nUse this code in WhatsApp → Linked Devices → Link a Device\n\n> 🔥 Powered by JAMALI TECH TZ`,
+                        text: `🔐 *Your D4rkEcho MD Pairing Code:*\n\n\`${code}\`\n\nUse this code in WhatsApp → Linked Devices → Link a Device\n\n> ⚡ Powered by D4rkEcho MD`,
                         contextInfo: {
                             forwardingScore: 1,
                             isForwarded: true,
                             forwardedNewsletterMessageInfo: {
-                                newsletterJid: '120363425061263455@newsletter',
-                                newsletterName: 'JAMALI MD',
+                                newsletterJid: '120363426538840090@newsletter',
+                                newsletterName: 'D4rkEcho MD',
                                 serverMessageId: -1
                             }
                         }
