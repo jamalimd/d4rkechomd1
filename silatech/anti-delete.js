@@ -1,90 +1,103 @@
-// silatech/antilink.js
-// D4rkEcho MD - Anti-Link Group Protection
+//ALF MD -Anti-Delete system v2.0
+//By Nedy Kidy - ''Alf''
+//Inahifadhi + Inarudisha ujumbe uliofutwa
+import fs from 'fs';
+import path from 'path';
 
-const fs = require('fs');
-const path = require('path');
+const messageStore = new Map();
+const CACHE_TIME = 5 * 60 * 1000; // Dakika 5
 
-// Path for antilink group settings
-const antilinkGroupsPath = path.join(__dirname, '..', 'database', 'antilink_groups.json');
+// 1. HIFADHI UJUMBE UKIINGIA
+export async function storeMessage(m)
+     if (!m ||!m.key || m.key.fromMe) return;
 
-// Ensure directory exists
-const antilinkDir = path.dirname(antilinkGroupsPath);
-if (!fs.existsSync(antilinkDir)) {
-    fs.mkdirSync(antilinkDir, { recursive: true });
+     const messageId = m.key.id;
+     messageStore.set(messageId, {
+         message: m.message,
+         key: m.key.
+         pushName: m.pushName || 'mtu',
+         timestamp: Date.now()
+
+    ]);
+
+    //futa baada ya dakika 5
+    setTimeout(() =>
+messageStore.delete(messageId), CACHE_TIME;
+]
+
+// 2. RUDISHA UJUMBE ULIOFUTWA
+export async function
+handleAntidelete(deleteUpdate, conn) [
+    try [
+        const key = deleteUpdate.keys?.[0];
+        if (!key)return;
+
+        const messageId = key.Id;
+        const deletedMsg =
+messageStore.get(messageId);
+        if (!deletedMsg) return;
+
+        const chatId = key.remoteJid;
+        const { message, pushName } =
+deletedMsg;
+
+          // Angalia kama antidelete imawashwa
+group hili
+        global.db = global.db || {};
+        global.db.antiDelete =
+global.db.antiDelete || {};
+        if (global.db.antiDelete[chatId])
+return;
+
+      let text = '*ALF MD ANTI-DELETE*\n\';
+      text += '*Jina:* $[pushName]\n';
+      text +=Amefuta ujumbe:*\n\n';
+
+      await conn.sendMessage(chatId, 
+      { text });
+                await conn.sendMessage(chatId,message);
+
+                messageStore.delete(messageId);
+         } catch (e) {
+             console.log('ALF Antidelete Error:',e);
+         }
 }
 
-// Load group settings
-const getGroupSettings = () => {
-    try {
-        if (fs.existsSync(antilinkGroupsPath)) {
-            return JSON.parse(fs.readFileSync(antilinkGroupsPath, 'utf8'));
-        }
-        return {};
-    } catch (err) {
-        return {};
-    }
-};
+//3. COMMAND.antidelete on/off
+const handler =async (m, { conn, args,
+isAdmin }) => {
+    if (!m.isGroup) m.replay('⛔Command
+hii ni ya group tu!');
+    if (!isAdmin) return m.replay('⛔ wewe si 
+admini mkuu  ALF!');
 
-// Save group settings
-const saveGroupSettings = (data) => {
-    fs.writeFileSync(antilinkGroupsPath, JSON.stringify(data, null, 2));
-};
+    const status = args[0]?.toLowerCase();
+    const chatId = m.chat;
 
-// Enable/disable antilink for a group
-const setGroupAntilink = (groupId, enabled) => {
-    const settings = getGroupSettings();
-    if (enabled) {
-        settings[groupId] = true;
-    } else {
-        delete settings[groupId];
-    }
-    saveGroupSettings(settings);
-    return true;
-};
+    global.db = global.db || {};
+    global.db.antiDelete[chatId = true;
+    m.replay('✅ *ALF MD ANTIDELETE 
+IMEWASHWA*\nSasa nitakurudishia ujumbe wowote 
+ukifutwa!');
+   } else if (status === 'off') {
+       global.db.antiDelete[chatId] = false;
+       m.reply('❎ *ALF MD ANTI-DELETE 
+IMEZIMWA*');
+   } else {
+        m.reply('📝 *ALF MD ANTI-
+DELETE*\n\nTumia:\n.antidelete on -
+kuwasha\n.antidelete off - kuzima');
+   }
+}
 
-// Get antilink status for a group
-const getGroupAntilink = (groupId) => {
-    const settings = getGroupSettings();
-    return settings[groupId] === true;
-};
+handler.help = ['antidelete on/off'];
+handler.tags = ['group'];
+handler.command = /^(antidelete|antidel|ad)$/i;
+handler.group = true;
+handler.admin = true;
 
-// Command: antilink on/off
-module.exports = {
-    pattern: 'antilink',
-    alias: ['antilink', 'antilinkgroup', 'al'],
-    react: '🔗',
-    description: 'Enable or disable anti-link protection in group',
-    category: 'group',
-    usage: '.antilink on/off',
-    async function(conn, mek, m, {
-        from, isGroup, isAdmins, isBotAdmins, isCreator, isOwner,
-        reply, args, config, command
-    }) {
-        if (!isGroup) {
-            return reply('❌ This command can only be used in groups!');
-        }
-        
-        if (!isAdmins && !isCreator && !isOwner) {
-            return reply('❌ Only group admins or bot owner can use this command!');
-        }
-        
-        if (!isBotAdmins) {
-            return reply('❌ Bot needs to be admin to manage anti-link!');
-        }
-        
-        const action = args[0] ? args[0].toLowerCase() : '';
-        
-        if (action === 'on' || action === 'enable') {
-            setGroupAntilink(from, true);
-            reply(`✅ *ANTI-LINK ENABLED* ✅\n\n🔗 Links are now prohibited in this group!\n⚠️ Users who send links will receive warnings.\n📌 After ${config.LINK_WARN_LIMIT || 3} warnings, they will be ${config.LINK_ACTION || 'kicked'}.\n\n*To disable:* .antilink off`);
-        } 
-        else if (action === 'off' || action === 'disable') {
-            setGroupAntilink(from, false);
-            reply(`❌ *ANTI-LINK DISABLED* ❌\n\n🔗 Links are now allowed in this group!\n\n*To enable:* .antilink on`);
-        }
-        else {
-            const status = getGroupAntilink(from) ? '✅ ENABLED' : '❌ DISABLED';
-            reply(`🔗 *ANTI-LINK STATUS*\n\n📌 Current status: ${status}\n⚠️ Warning limit: ${config.LINK_WARN_LIMIT || 3}\n⚡ Action after limit: ${config.LINK_ACTION || 'kick'}\n📋 Whitelisted domains: ${config.LINK_WHITELIST || 'whatsapp.com, chat.whatsapp.com, youtube.com'}\n\n*Usage:*\n.antilink on - Enable protection\n.antilink off - Disable protection`);
-        }
-    }
-};
+export default handler;
+
+
+
+
